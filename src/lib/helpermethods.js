@@ -2,15 +2,27 @@ let JSONDeepCopy = (obj) => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-let raidersDeepCopy = (raiders) => {
-  let arrayToReturn = [];
-  raiders.forEach((raider) => {
-    let newRaider = { hp: null, alive: true, effects: [], auras: [] };
-    newRaider.hp = raider.hp;
-    newRaider
-    arrayToReturn.push(newRaider);
-  });
-};
+// let raidersDeepCopy = (raiders) => {
+//   let arrayToReturn = [];
+//   raiders.forEach((raider) => {
+//     let newRaider = { hp: null, alive: true, effects: [], auras: [] };
+//     newRaider.hp = raider.hp;
+//     newRaider
+//     arrayToReturn.push(newRaider);
+//   });
+// };
+
+//find raider with lowest hp
+function findLowestHp(raiders){
+  if(raiders.length === 0) throw new Error('array is empty');
+  let lowest = raiders[0];
+  for(let i = 1; i < raiders.length; i++){
+    if(raiders[i].hp < lowest.hp){
+      lowest = raiders[i];
+    }
+  }
+  return lowest;
+}
 
 //from https://github.com/jinujd/Javascript-Deep-Clone
 //Deep clones an object
@@ -98,4 +110,4 @@ let deepClone = (obj) => {
     return ret;
 }
 
-export { JSONDeepCopy, deepClone };
+export { JSONDeepCopy, deepClone, findLowestHp };

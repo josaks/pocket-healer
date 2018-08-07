@@ -8,7 +8,7 @@ import BossHealthbar from '../components/bosshealthbar';
 import RaiderHealthbar from '../components/raiderhealthbar';
 import Castbar from '../components/castbar';
 import { JSONDeepCopy, deepClone } from '../lib/helpermethods';
-import { raiderMaxHealth, bossMaxHealth, maxMana } from '../../config/settings';
+import { raiderMaxHealth, bossMaxHealth, maxMana } from '../config/settings';
 
 export default class EncounterScreen extends React.Component {
   constructor(props){

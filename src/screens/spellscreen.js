@@ -7,7 +7,7 @@ import SpellList from '../components/spellList';
 import SpellListEntry from '../components/spellListEntry';
 import HealingTouch from '../lib/spells/healingtouch';
 import Cleanse from '../lib/spells/cleanse';
-
+import ChainHeal from '../lib/spells/chainheal';
 
 export default class SpellScreen extends React.Component {
   constructor(props){
@@ -41,6 +41,7 @@ export default class SpellScreen extends React.Component {
   render() {
     const ht = new HealingTouch(10, 2000, 400);
     const cleanse = new Cleanse(20, 0, 'N/A');
+    const ch = new ChainHeal(20, 2000, 400);
 
     return (
       <View style={style.spellScreen}>
@@ -54,8 +55,8 @@ export default class SpellScreen extends React.Component {
             selectSpell={(i) => this.selectSpell(cleanse, i)}
           />
           <SpellListEntry
-            spell={ht}
-            selectSpell={(i) => this.selectSpell(ht, i)}
+            spell={ch}
+            selectSpell={(i) => this.selectSpell(ch, i)}
           />
           <SpellListEntry
             spell={ht}

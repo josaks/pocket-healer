@@ -1,4 +1,4 @@
-import raiderMaxHealth from '../../config/settings';
+import { raiderMaxHealth } from '../../config/settings';
 
 export default function HealingTouch(manaCost, casttime, healAmount){
   this.manaCost = manaCost;
