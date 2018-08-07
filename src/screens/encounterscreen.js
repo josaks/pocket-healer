@@ -8,17 +8,18 @@ import BossHealthbar from '../components/bosshealthbar';
 import RaiderHealthbar from '../components/raiderhealthbar';
 import Castbar from '../components/castbar';
 import { JSONDeepCopy, deepClone } from '../lib/helpermethods';
+import { raiderMaxHealth, bossMaxHealth, maxMana } from '../../config/settings';
 
 export default class EncounterScreen extends React.Component {
   constructor(props){
     super(props);
     let raiders = [];
     for(let i = 0; i < 10; i++){
-      raiders.push({ hp: 1000, alive: true, effects: [], auras: [] });
+      raiders.push({ hp: raiderMaxHealth, alive: true, effects: [], auras: [] });
     }
     this.state = {
-      bossHp: 1000,
-      mana: 1000,
+      bossHp: bossMaxHealth,
+      mana: maxMana,
       castCompletion: 0,
       amountOfRaidersAlive: 10,
       raiders: raiders,

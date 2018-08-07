@@ -1,3 +1,5 @@
+import raiderMaxHealth from '../../config/settings';
+
 export default function HealingTouch(manaCost, casttime, healAmount){
   this.manaCost = manaCost;
   this.casttime = casttime;
@@ -10,7 +12,7 @@ export default function HealingTouch(manaCost, casttime, healAmount){
     if(i < 0) throw new Error('Index < 0');
 
     //apply heal
-    raiders[i].hp = (raiders[i].hp + this.healAmount > 1000) ? 1000 : raiders[i].hp + this.healAmount;
+    raiders[i].hp = (raiders[i].hp + this.healAmount > raiderMaxHealth) ? raiderMaxHealth : raiders[i].hp + this.healAmount;
 
     return raiders;
   };
