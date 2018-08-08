@@ -4,8 +4,14 @@ import style from '../config/style';
 
 export default class SpellListEntry extends React.Component{
   render(){
+
+    let selectedStyle = {};
+    if(this.props.selected){
+      selectedStyle = { backgroundColor: '#66a3ff' };
+    }
+
     return(
-      <View style={style.spellListEntry}>
+      <TouchableOpacity style={[style.spellListEntry, selectedStyle]} onPress={() => this.props.spellToBeSelected(this.props.spell)}>
         <View style={style.spellImage}>
           {/*image*/}
         </View>
@@ -16,15 +22,7 @@ export default class SpellListEntry extends React.Component{
             <Text>, Casttime: {this.props.spell.casttime}</Text>
           </View>
         </View>
-        <View style={style.spellButtons}>
-          <TouchableOpacity onPress={() => this.props.selectSpell(0)} style={style.spellBtn}>
-            <Text>Spell 1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.selectSpell(1)} style={style.spellBtn}>
-            <Text>Spell 2</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 };

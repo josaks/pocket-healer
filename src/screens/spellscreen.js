@@ -1,20 +1,46 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, FlatList } from 'react-native';
 import style from '../config/style';
 import RejectBtn from '../components/rejectbtn';
 import AcceptBtn from '../components/acceptbtn';
-import SpellList from '../components/spellList';
 import SpellListEntry from '../components/spellListEntry';
 import HealingTouch from '../lib/spells/healingtouch';
 import Cleanse from '../lib/spells/cleanse';
 import ChainHeal from '../lib/spells/chainheal';
+import SpellSelectModal from '../components/spellselectmodal';
+
+//instantiate spells
+/*
+TODO: switch to factory
+*/
+const ht = new HealingTouch(10, 2000, 400);
+const cleanse = new Cleanse(20, 0, 'N/A');
+const ch = new ChainHeal(20, 2000, 400);
 
 export default class SpellScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       spells: [null, null],
+      modalVisible: false,
     };
+  }
+
+  spellToModal(spell){
+    if(!this.selected(spell)){
+      this.spellToBeSelected = spell;
+      this.setModalVisible(true);
+    }
+  }
+
+  selected = (spell) => {
+    return this.state.spells.includes(spell);
+  }
+
+  setModalVisible(isVisible){
+    this.setState({
+      modalVisible: isVisible,
+    });
   }
 
   goBack(){
@@ -28,47 +54,46 @@ export default class SpellScreen extends React.Component {
     });
   }
 
-  selectSpell(spell, i){
-    if(!this.state.spells.includes(spell)){
-      let spells = [...this.state.spells];
-      spells[i] = spell;
-      this.setState({
-        spells: spells,
-      });
-    }
+  selectSpell = (spell, i) => {
+    let spells = [...this.state.spells];
+    spells[i] = spell;
+    this.setState({
+      spells: spells,
+    });
+    this.setModalVisible(false);
   }
 
   render() {
-    const ht = new HealingTouch(10, 2000, 400);
-    const cleanse = new Cleanse(20, 0, 'N/A');
-    const ch = new ChainHeal(20, 2000, 400);
-
     return (
       <View style={style.spellScreen}>
-        <SpellList>
-          <SpellListEntry
-            spell={ht}
-            selectSpell={(i) => this.selectSpell(ht, i)}
+        <View style={style.spellContentContainer}>
+          <SpellSelectModal
+            visibility={this.state.modalVisible}
+            setVisibility={(isVisible) => this.setModalVisible(isVisible)}
+            spellToBeSelected={this.spellToBeSelected}
+            selectSpell={this.selectSpell}
+            setModalVisible={(isVisible) => this.setModalVisible(isVisible)}
           />
-          <SpellListEntry
-            spell={cleanse}
-            selectSpell={(i) => this.selectSpell(cleanse, i)}
-          />
-          <SpellListEntry
-            spell={ch}
-            selectSpell={(i) => this.selectSpell(ch, i)}
-          />
-          <SpellListEntry
-            spell={ht}
-            selectSpell={(i) => this.selectSpell(ht, i)}
-          />
-          <SpellListEntry
-            spell={ht}
-            selectSpell={(i) => this.selectSpell(ht, i)}
-          />
-        </SpellList>
+          <ScrollView contentContainerStyle={style.spellList}>
+            <SpellListEntry
+              spell={ht}
+              spellToBeSelected={(spell) => this.spellToModal(spell)}
+              selected={this.selected(ht)}
+            />
+            <SpellListEntry
+              spell={cleanse}
+              spellToBeSelected={(spell) => this.spellToModal(spell)}
+              selected={this.selected(cleanse)}
+            />
+            <SpellListEntry
+              spell={ch}
+              spellToBeSelected={(spell) => this.spellToModal(spell)}
+              selected={this.selected(ch)}
+            />
+          </ScrollView>
+        </View>
 
-        <View style={style.fightInfoButtonsContainer}>
+        <View style={style.spellSelectButtonsContainer}>
           <RejectBtn onpress={() => this.goBack()}/>
           <AcceptBtn onpress={() => this.showEncounter()}/>
         </View>

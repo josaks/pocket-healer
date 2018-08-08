@@ -20,7 +20,9 @@ export default StyleSheet.create({
   spellScreen: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 0.10*height,
+  },
+  spellContentContainer: {
+    flex: 1,
   },
   encounterScreen: {
     flex: 1,
@@ -53,9 +55,16 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
+  spellSelectButtonsContainer: {
+    height: '15%',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
   fightInfoBtn: {
-    width: 0.5*width,
-    height: 0.15*height,
+    width: '50%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -144,11 +153,11 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   spellList: {
-    height: '70%',
+    flex: 1,
   },
   spellListEntry: {
     flexDirection: 'row',
-    height: '20%',
+    height: '15%',
     width: '100%',
   },
   spellImage: {
@@ -160,16 +169,27 @@ export default StyleSheet.create({
     width: '40%',
   },
   spellName: {
-    fontSize: 35,
+    fontSize: 20,
   },
   spellInfoDetails: {
     flexDirection: 'row',
     height: '50%',
     width: '100%',
   },
-  spellButtons: {
+  spellSelectModal: {
     height: '100%',
-    width: '40%',
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
   },
+  spellSelectModalButton: {
+    width: '50%',
+    height: '20%',
+    backgroundColor: '#0066ff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  spellSelectModalButtonTxt: {
+    color: 'white',
+  }
 });
