@@ -7,7 +7,7 @@ export default class FightInfo extends React.Component{
   render(){
     return(
       <View style={style.fightInfo}>
-        <DefaultText>Some information</DefaultText>
+        <DefaultText>Some information about the bossfight</DefaultText>
       </View>
     );
   }

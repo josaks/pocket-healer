@@ -11,15 +11,15 @@ export default class SpellListEntry extends React.Component{
     }
 
     return(
-      <TouchableOpacity style={[style.spellListEntry, selectedStyle]} onPress={() => this.props.spellToBeSelected(this.props.spell)}>
+      <TouchableOpacity style={[selectedStyle]} onPress={() => this.props.spellToModal()}>
         <View style={style.spellImage}>
           {/*image*/}
         </View>
         <View style={style.spellInfo}>
-          <Text style={style.spellName}>{this.props.spell.name}</Text>
+          <Text style={style.spellName}>{this.props.name}</Text>
           <View style={style.spellInfoDetails}>
-            <Text>Mana cost: {this.props.spell.manaCost}</Text>
-            <Text>, Casttime: {this.props.spell.casttime}</Text>
+            <Text>Mana cost: {this.props.manaCost}</Text>
+            <Text>, Casttime: {this.props.casttime}</Text>
           </View>
         </View>
       </TouchableOpacity>

@@ -16,6 +16,8 @@ TODO: switch to factory
 const ht = new HealingTouch(10, 2000, 400);
 const cleanse = new Cleanse(20, 0, 'N/A');
 const ch = new ChainHeal(20, 2000, 400);
+let spells = [ht, cleanse, ch];
+console.log('component did mount');
 
 export default class SpellScreen extends React.Component {
   constructor(props){
@@ -24,16 +26,17 @@ export default class SpellScreen extends React.Component {
       spells: [null, null],
       modalVisible: false,
     };
+
   }
 
-  spellToModal(spell){
-    if(!this.selected(spell)){
+  spellToModal = (spell) => {
+    if(!this.isSelected(spell)){
       this.spellToBeSelected = spell;
       this.setModalVisible(true);
     }
   }
 
-  selected = (spell) => {
+  isSelected = (spell) => {
     return this.state.spells.includes(spell);
   }
 
@@ -64,6 +67,7 @@ export default class SpellScreen extends React.Component {
   }
 
   render() {
+    console.log(spells);
     return (
       <View style={style.spellScreen}>
         <View style={style.spellContentContainer}>
@@ -74,6 +78,28 @@ export default class SpellScreen extends React.Component {
             selectSpell={this.selectSpell}
             setModalVisible={(isVisible) => this.setModalVisible(isVisible)}
           />
+
+          <Text>hfyjuyfjyf</Text>
+          <FlatList
+            style={style.spellList}
+            contentContainerStyle={style.spellList}
+            data={spells}
+            keyExtractor={(spell) => spell.name}
+            renderItem={(spell) => {
+                return (
+                  <SpellListEntry
+                    name={spell.name}
+                    manaCost={spell.manaCost}
+                    casttime={spell.casttime}
+                    spellToModal={() => this.spellToModal(spell)}
+                    selected={this.isSelected(spell)}
+                  />
+                )
+              }
+            }
+          />
+          <Text>hfyjuyfjyf</Text>
+          {/*
           <ScrollView contentContainerStyle={style.spellList}>
             <SpellListEntry
               spell={ht}
@@ -91,6 +117,7 @@ export default class SpellScreen extends React.Component {
               selected={this.selected(ch)}
             />
           </ScrollView>
+          */}
         </View>
 
         <View style={style.spellSelectButtonsContainer}>
