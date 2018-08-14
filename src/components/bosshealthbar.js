@@ -1,16 +1,21 @@
 import React from 'react';
-import { View, Dimensions, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import style from '../config/style';
-const { width } = Dimensions.get('window');
+import ResourceBar from './resourcebar';
 
 export default class BossHealthbar extends React.Component{
   render(){
     return(
-      <View style={style.bossHealthbarFrame}>
-        <View style={[style.bossHealthbarFill, {width: width * (this.props.hp / 1000)}]}>
-          <Text>Boss health bar</Text>
-        </View>
-      </View>
+      <ResourceBar
+        fillPercent={this.props.fillPercent}
+        fillColor={style.bossHealthbarColor}
+        frameStyle={style.bossHealthbar}
+        content={() => (
+          <View>
+            <Text>{this.props.text}</Text>
+          </View>
+        )}
+      />
     );
   }
 };

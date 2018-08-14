@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import style from '../config/style';
 import RejectBtn from '../components/rejectbtn';
 import AcceptBtn from '../components/acceptbtn';
@@ -9,15 +9,6 @@ import Cleanse from '../lib/spells/cleanse';
 import ChainHeal from '../lib/spells/chainheal';
 import SpellSelectModal from '../components/spellselectmodal';
 
-//instantiate spells
-/*
-TODO: switch to factory
-*/
-const ht = new HealingTouch(10, 2000, 400);
-const cleanse = new Cleanse(20, 0, 'N/A');
-const ch = new ChainHeal(20, 2000, 400);
-let spells = [ht, cleanse, ch];
-console.log('component did mount');
 
 export default class SpellScreen extends React.Component {
   constructor(props){
@@ -25,6 +16,15 @@ export default class SpellScreen extends React.Component {
     this.state = {
       spells: [null, null],
       modalVisible: false,
+      /*
+      instantiate spells
+      TODO: switch to factory
+      */
+      selectableSpells: [
+        new HealingTouch(10, 2000, 400),
+        new Cleanse(20, 0, 'N/A'),
+        new ChainHeal(20, 2000, 400),
+      ],
     };
 
   }
@@ -46,15 +46,21 @@ export default class SpellScreen extends React.Component {
     });
   }
 
+  openInfo(spell){
+    console.log(spell);
+  }
+
   goBack(){
     this.props.navigation.goBack();
   }
 
   showEncounter(){
-    this.props.navigation.navigate('Encounter', {
-      boss: this.props.navigation.getParam('boss'),
-      spells: {spellOne: this.state.spells[0], spellTwo: this.state.spells[1]},
-    });
+    if(this.state.spells[0] !== null && this.state.spells[1] !== null){
+      this.props.navigation.navigate('Encounter', {
+        boss: this.props.navigation.getParam('boss'),
+        spells: {spellOne: this.state.spells[0], spellTwo: this.state.spells[1]},
+      });
+    }
   }
 
   selectSpell = (spell, i) => {
@@ -66,8 +72,15 @@ export default class SpellScreen extends React.Component {
     this.setModalVisible(false);
   }
 
+// <SpellListEntry
+//   name={item.name}
+//   manaCost={item.manaCost}
+//   casttime={item.casttime}
+//   spellToModal={() => this.spellToModal(item)}
+//   selected={this.isSelected(item)}
+// />
+
   render() {
-    console.log(spells);
     return (
       <View style={style.spellScreen}>
         <View style={style.spellContentContainer}>
@@ -79,45 +92,23 @@ export default class SpellScreen extends React.Component {
             setModalVisible={(isVisible) => this.setModalVisible(isVisible)}
           />
 
-          <Text>hfyjuyfjyf</Text>
-          <FlatList
-            style={style.spellList}
-            contentContainerStyle={style.spellList}
-            data={spells}
-            keyExtractor={(spell) => spell.name}
-            renderItem={(spell) => {
-                return (
-                  <SpellListEntry
-                    name={spell.name}
-                    manaCost={spell.manaCost}
-                    casttime={spell.casttime}
-                    spellToModal={() => this.spellToModal(spell)}
-                    selected={this.isSelected(spell)}
-                  />
-                )
+          <View style={style.spellList}>
+            <FlatList
+              data={this.state.selectableSpells}
+              keyExtractor={(item) => item.name}
+              renderItem={({item}) => {
+                  return (
+                    <SpellListEntry
+                      name={item.name}
+                      spellToModal={() => this.spellToModal(item)}
+                      openInfo={() => this.openInfo(item)}
+                      selected={this.isSelected(item)}
+                    />
+                  )
+                }
               }
-            }
-          />
-          <Text>hfyjuyfjyf</Text>
-          {/*
-          <ScrollView contentContainerStyle={style.spellList}>
-            <SpellListEntry
-              spell={ht}
-              spellToBeSelected={(spell) => this.spellToModal(spell)}
-              selected={this.selected(ht)}
             />
-            <SpellListEntry
-              spell={cleanse}
-              spellToBeSelected={(spell) => this.spellToModal(spell)}
-              selected={this.selected(cleanse)}
-            />
-            <SpellListEntry
-              spell={ch}
-              spellToBeSelected={(spell) => this.spellToModal(spell)}
-              selected={this.selected(ch)}
-            />
-          </ScrollView>
-          */}
+          </View>
         </View>
 
         <View style={style.spellSelectButtonsContainer}>
@@ -128,3 +119,13 @@ export default class SpellScreen extends React.Component {
     );
   }
 };
+
+
+// <TouchableOpacity onPress={() => this.spellToModal(item)}>
+//   <View style={style.spellListEntry}>
+//     <Text>{item.name}</Text>
+//     <TouchableOpacity onPress={() => this.openInfo(item)}>
+//       <FontAwesome name={'info'} size={30} />
+//     </TouchableOpacity>
+//   </View>
+// </TouchableOpacity>

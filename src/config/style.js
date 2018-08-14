@@ -86,48 +86,43 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: 0.6*height,
   },
-  bossHealthbarFrame: {
-    width: width,
-    height: 0.05*height,
+  barFrame: {
     borderColor: 'black',
-    borderRadius: 1,
+    borderWidth: 3,
   },
-  bossHealthbarFill: {
-    backgroundColor: 'red',
+  barFill: {
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  manabarFrame: {
+  bossHealthbar: {
+    width: width,
+    height: 0.05*height,
+  },
+  bossHealthbarColor: {
+    backgroundColor: 'red',
+  },
+  manabar: {
     marginTop: 0.05*height,
     width: width,
     height: 0.05*height,
-    borderWidth: 2,
-    borderColor: 'black',
   },
-  manabarFill: {
+  manabarColor: {
     backgroundColor: 'blue',
-    height: '100%',
   },
-  castbarFrame: {
+  castBar: {
     width: width,
     height: 0.05*height,
-    borderWidth: 2,
-    borderColor: 'black',
   },
-  castbarFill: {
+  castBarColor: {
     backgroundColor: '#ffad33',
-    height: '100%',
   },
-  raiderHealthbarFrame: {
+  raiderHealthbar: {
     width: 0.45*width,
     height: 0.05*height,
-    borderWidth: 2,
-    borderColor: 'black',
   },
-  raiderHealthbarFill: {
+  raiderHealthbarColor: {
     backgroundColor: 'red',
-    height: '100%',
   },
   raiderHealthbarContainer: {
     marginTop: 0.05*height,
@@ -154,19 +149,17 @@ export default StyleSheet.create({
   },
   spellList: {
     flex: 1,
+    paddingTop: '10%',
   },
   spellListEntry: {
     flexDirection: 'row',
-    height: '15%',
-    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: '10%',
   },
   spellImage: {
     height: '100%',
     width: '20%',
-  },
-  spellInfo: {
-    height: '100%',
-    width: '40%',
   },
   spellName: {
     fontSize: 20,

@@ -149,7 +149,12 @@ export default class EncounterScreen extends React.Component {
         </View>
 
         <View style={style.raidContainer}>
-          <BossHealthbar hp={this.state.bossHp}/>
+
+          <BossHealthbar
+            fillPercent={(this.state.bossHp / bossMaxHealth) * 100}
+            text="'Bossname here'"
+          />
+
           <View style={style.raiderHealthbarContainer}>
             {
               this.state.raiders.map((raider, i) => {
@@ -157,7 +162,7 @@ export default class EncounterScreen extends React.Component {
                   <View key={i}>
                     <RaiderHealthbar
                       onpress={() => this.castSelectedSpell(i)}
-                      hp={raider.hp}
+                      fillPercent={(raider.hp / raiderMaxHealth) * 100}
                       effects={raider.effects}
                     />
                   </View>
@@ -168,11 +173,13 @@ export default class EncounterScreen extends React.Component {
         </View>
 
         <View>
-          <Manabar mana={this.state.mana}/>
+          <Manabar
+            fillPercent={(this.state.mana / maxMana) * 100}
+          />
         </View>
 
         <View>
-          <Castbar castCompletion={this.castCompletion} />
+          <Castbar castCompletion={this.state.castCompletion} />
         </View>
 
         <View style={style.spellBtnsContainer}>
