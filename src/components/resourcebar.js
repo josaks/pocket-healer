@@ -9,14 +9,15 @@ export default class ResourceBar extends React.Component{
 
     return (
       <View style={[style.barFrame, this.props.frameStyle]}>
-        <View style={[style.barFill, this.props.fillColor, {width: widthString}]}>
-          {!!this.props.content &&
-            <View>
-              {this.props.content()}
-            </View>
-          }
-        </View>
+        <View style={[style.barFill, this.props.fillColor, {width: widthString}]} />
       </View>
     );
   }
 };
+
+//content render prop
+// {!!this.props.content &&
+//   <View>
+//     {this.props.content()}
+//   </View>
+// }

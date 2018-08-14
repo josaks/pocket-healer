@@ -10,11 +10,6 @@ export default class BossHealthbar extends React.Component{
         fillPercent={this.props.fillPercent}
         fillColor={style.bossHealthbarColor}
         frameStyle={style.bossHealthbar}
-        content={() => (
-          <View>
-            <Text>{this.props.text}</Text>
-          </View>
-        )}
       />
     );
   }

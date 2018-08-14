@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import style from '../config/style';
-import Raid from '../components/raid';
 import Manabar from '../components/manabar';
 import SpellBtn from '../components/spellbtn';
 import BossHealthbar from '../components/bosshealthbar';
