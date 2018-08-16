@@ -37,7 +37,7 @@ export default class SpellScreen extends React.Component {
     }
   }
 
-  isSelected = (spell) => {
+  isSelected(spell) {
     return this.state.spells.includes(spell);
   }
 
