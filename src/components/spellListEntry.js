@@ -19,7 +19,7 @@ export default class SpellListEntry extends React.Component{
             source={{uri: 'http://via.placeholder.com/50/111111'}}
           />
           <Text>{this.props.name}</Text>
-          <TouchableOpacity onPress={() => this.props.openInfo}>
+          <TouchableOpacity onPress={this.props.openInfo}>
             <FontAwesome name={'info'} size={50} />
           </TouchableOpacity>
         </View>

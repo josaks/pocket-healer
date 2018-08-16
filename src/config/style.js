@@ -184,5 +184,10 @@ export default StyleSheet.create({
   },
   spellSelectModalButtonTxt: {
     color: 'white',
-  }
+  },
+  spellInfoModal: {
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: '5%',
+  },
 });

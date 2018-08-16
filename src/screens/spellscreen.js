@@ -8,14 +8,15 @@ import HealingTouch from '../lib/spells/healingtouch';
 import Cleanse from '../lib/spells/cleanse';
 import ChainHeal from '../lib/spells/chainheal';
 import SpellSelectModal from '../components/spellselectmodal';
-
+import SpellInfoModal from '../components/spellinfomodal';
 
 export default class SpellScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       spells: [null, null],
-      modalVisible: false,
+      choiceModalVisible: false,
+      infoModalVisible: false,
       /*
       instantiate spells
       TODO: switch to factory
@@ -32,7 +33,7 @@ export default class SpellScreen extends React.Component {
   spellToModal = (spell) => {
     if(!this.isSelected(spell)){
       this.spellToBeSelected = spell;
-      this.setModalVisible(true);
+      this.setChoiceModalVisibility(true);
     }
   }
 
@@ -40,14 +41,21 @@ export default class SpellScreen extends React.Component {
     return this.state.spells.includes(spell);
   }
 
-  setModalVisible(isVisible){
+  setChoiceModalVisibility(visibility){
     this.setState({
-      modalVisible: isVisible,
+      choiceModalVisible: visibility,
     });
   }
 
   openInfo(spell){
-    console.log(spell);
+    this.spellToBeShownInfoAbout = spell;
+    this.setInfoModalVisibility(true);
+  }
+
+  setInfoModalVisibility(visibility){
+    this.setState({
+      infoModalVisible: visibility,
+    });
   }
 
   goBack(){
@@ -69,28 +77,27 @@ export default class SpellScreen extends React.Component {
     this.setState({
       spells: spells,
     });
-    this.setModalVisible(false);
+    this.setChoiceModalVisibility(false);
   }
-
-// <SpellListEntry
-//   name={item.name}
-//   manaCost={item.manaCost}
-//   casttime={item.casttime}
-//   spellToModal={() => this.spellToModal(item)}
-//   selected={this.isSelected(item)}
-// />
 
   render() {
     return (
       <View style={style.spellScreen}>
         <View style={style.spellContentContainer}>
           <SpellSelectModal
-            visibility={this.state.modalVisible}
-            setVisibility={(isVisible) => this.setModalVisible(isVisible)}
-            spellToBeSelected={this.spellToBeSelected}
-            selectSpell={this.selectSpell}
-            setModalVisible={(isVisible) => this.setModalVisible(isVisible)}
+            visible={this.state.choiceModalVisible}
+            hide={() => this.setChoiceModalVisibility(false)}
+            selectSpell={(i) => this.selectSpell(this.spellToBeSelected, i)}
           />
+
+          {/*If this.spellToBeShownInfoAbout is null, dont show info modal*/}
+          {!!this.spellToBeShownInfoAbout &&
+            <SpellInfoModal
+              visible={this.state.infoModalVisible}
+              hide={() => this.setInfoModalVisibility(false)}
+              spell={this.spellToBeShownInfoAbout}
+            />
+          }
 
           <View style={style.spellList}>
             <FlatList
@@ -119,13 +126,3 @@ export default class SpellScreen extends React.Component {
     );
   }
 };
-
-
-// <TouchableOpacity onPress={() => this.spellToModal(item)}>
-//   <View style={style.spellListEntry}>
-//     <Text>{item.name}</Text>
-//     <TouchableOpacity onPress={() => this.openInfo(item)}>
-//       <FontAwesome name={'info'} size={30} />
-//     </TouchableOpacity>
-//   </View>
-// </TouchableOpacity>
