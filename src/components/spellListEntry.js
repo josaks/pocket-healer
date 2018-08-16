@@ -5,12 +5,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class SpellListEntry extends React.Component{
   render(){
-
     let selectedStyle = {};
     if(this.props.selected){
       selectedStyle = { backgroundColor: '#66a3ff' };
     }
-
+    
     return(
       <TouchableOpacity onPress={this.props.spellToModal}>
         <View style={[style.spellListEntry, selectedStyle]}>

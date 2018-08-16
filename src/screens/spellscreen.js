@@ -4,30 +4,24 @@ import style from '../config/style';
 import RejectBtn from '../components/rejectbtn';
 import AcceptBtn from '../components/acceptbtn';
 import SpellListEntry from '../components/spellListEntry';
-import HealingTouch from '../lib/spells/healingtouch';
-import Cleanse from '../lib/spells/cleanse';
-import ChainHeal from '../lib/spells/chainheal';
 import SpellSelectModal from '../components/spellselectmodal';
 import SpellInfoModal from '../components/spellinfomodal';
+import SpellFactory from '../lib/spells/spellfactory';
 
 export default class SpellScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      /*Selected spells*/
       spells: [null, null],
       choiceModalVisible: false,
       infoModalVisible: false,
-      /*
-      instantiate spells
-      TODO: switch to factory
-      */
       selectableSpells: [
-        new HealingTouch(10, 2000, 400),
-        new Cleanse(20, 0, 'N/A'),
-        new ChainHeal(20, 2000, 400),
+        SpellFactory.Spell('healingtouch'),
+        SpellFactory.Spell('cleanse'),
+        SpellFactory.Spell('chainheal')
       ],
     };
-
   }
 
   spellToModal = (spell) => {
