@@ -4,7 +4,7 @@ import HealingTouch from './healingtouch';
 
 export default {
   Spell(spell){
-    return Object.create(this.spells[spell]);
+    return this.spells[spell];
   },
 
   spells: {

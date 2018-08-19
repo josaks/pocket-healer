@@ -6,6 +6,7 @@ export default function ChainHeal(manaCost, casttime, healAmount){
   this.casttime = casttime;
   this.healAmount = healAmount;
   this.name = 'Chain heal';
+  this.selected = false;
 
   this.cast = (raiders, i) => {
     //input checking

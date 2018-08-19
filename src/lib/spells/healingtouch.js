@@ -5,6 +5,7 @@ export default function HealingTouch(manaCost, casttime, healAmount){
   this.casttime = casttime;
   this.healAmount = healAmount;
   this.name = 'Healing Touch';
+  this.selected = false;
 
   this.cast = (raiders, i) => {
     //input checking

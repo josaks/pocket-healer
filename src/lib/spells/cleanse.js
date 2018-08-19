@@ -3,6 +3,7 @@ export default function Cleanse(manaCost, casttime, healAmount){
   this.casttime = casttime;
   this.healAmount = healAmount;
   this.name = 'Cleanse';
+  this.selected = false;
 
   this.cast = (raiders, i) => {
     //input checking

@@ -14,14 +14,14 @@ export default class SpellSelectModal extends React.Component {
             <View style={style.spellSelectModal}>
               <TouchableOpacity
                 style={style.spellSelectModalButton}
-                onPress={() => this.props.selectSpell(0)}
+                onPress={this.props.selectSpell}
               >
                 <Text style={style.spellSelectModalButtonTxt}>Choose as spell 1</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={style.spellSelectModalButton}
-                onPress={() => this.props.selectSpell(1)}
+                onPress={this.props.selectSpell}
               >
                 <Text style={style.spellSelectModalButtonTxt}>Choose as spell 2</Text>
               </TouchableOpacity>
