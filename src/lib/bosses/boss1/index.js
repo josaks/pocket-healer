@@ -16,16 +16,16 @@ export default (raiders, roll) => {
 
   //decide which boss ability to use
   switch(true){
-    case (roll < 50):
+    case (roll < 0):
       basedmg = 300;
       return SingleTargetAttack(raiders, i, basedmg);
-    case (roll < 100):
+    case (roll < 0):
       basedmg = 400;
       return AoeAttack(raiders, i, basedmg);
-    // case (roll < 90):
-    //   basedmg = 100;
-    //   effect = new Dot(basedmg);
-    // return ApplyEffect(raiders, i, effect);
+    case (roll < 90):
+      basedmg = 100;
+      effect = new Dot(basedmg);
+    return ApplyEffect(raiders, i, effect);
     default:
       return raiders;
   }

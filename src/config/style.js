@@ -2,6 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 //height and width of screen
 const { height, width } = Dimensions.get('window');
 
+//TODO: categoryize styles by screens
+
 export default StyleSheet.create({
   defaultText: {
     fontSize: 20,
@@ -27,7 +29,7 @@ export default StyleSheet.create({
   encounterScreen: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 0.05*height,
+    paddingTop: '5%',
   },
   mapRow: {
     flex: 1,
@@ -77,6 +79,7 @@ export default StyleSheet.create({
   bossNameContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    height: '10%',
   },
   bossName: {
     fontSize: 30,
@@ -84,7 +87,7 @@ export default StyleSheet.create({
   raidContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 0.6*height,
+    height: '60%',
   },
   barFrame: {
     borderColor: 'black',
@@ -96,38 +99,30 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   bossHealthbar: {
-    width: width,
-    height: 0.05*height,
+    width: '100%',
+    height: '10%',
   },
   bossHealthbarColor: {
     backgroundColor: 'red',
   },
   manabar: {
-    marginTop: 0.05*height,
-    width: width,
-    height: 0.05*height,
+    width: '100%',
+    height: '5%',
   },
   manabarColor: {
     backgroundColor: 'blue',
   },
   castBar: {
-    width: width,
-    height: 0.05*height,
+    width: '100%',
+    height: '5%',
   },
   castBarColor: {
     backgroundColor: '#ffad33',
   },
-  raiderHealthbar: {
-    width: 0.45*width,
-    height: 0.05*height,
-  },
-  raiderHealthbarColor: {
-    backgroundColor: 'red',
-  },
   raiderHealthbarContainer: {
-    marginTop: 0.05*height,
-    width: width,
-    height: height*0.4,
+    marginTop: '10%',
+    width: '100%',
+    height: '75%',
     justifyContent: 'space-between',
     alignContent: 'space-between',
     flexDirection: 'row',
@@ -136,7 +131,7 @@ export default StyleSheet.create({
   spellBtnsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 0.10*height,
+    height: '10%',
     width: width,
     position: 'absolute',
     bottom: 0,
@@ -189,5 +184,31 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     padding: '5%',
+  },
+  raider: {
+    width: '45%',
+    height: '15%',
+  },
+  raiderHealthbar: {
+    width: '100%',
+    height: '50%',
+  },
+  raiderHealthbarColor: {
+    backgroundColor: 'red',
+  },
+  raiderStatusbar: {
+    flexDirection: 'row',
+    height: '50%',
+    width: '100%',
+    borderLeftWidth: 3,
+    borderLeftColor: 'black',
+    borderBottomWidth: 3,
+    borderBottomColor: 'black',
+    borderRightWidth: 3,
+    borderRightColor: 'black',
+    alignItems: 'center',
+  },
+  effect: {
+    margin: 2,
   },
 });

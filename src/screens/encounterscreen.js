@@ -4,7 +4,7 @@ import style from '../config/style';
 import Manabar from '../components/manabar';
 import SpellBtn from '../components/spellbtn';
 import BossHealthbar from '../components/bosshealthbar';
-import RaiderHealthbar from '../components/raiderhealthbar';
+import Raider from '../components/raider';
 import Castbar from '../components/castbar';
 import { JSONDeepCopy, deepClone } from '../lib/helpermethods';
 import { raiderMaxHealth, bossMaxHealth, maxMana } from '../config/settings';
@@ -17,11 +17,11 @@ export default class EncounterScreen extends React.Component {
       raiders.push({ hp: raiderMaxHealth, alive: true, effects: [], auras: [] });
     }
     this.state = {
+      raiders: raiders,
       bossHp: bossMaxHealth,
       mana: maxMana,
-      castCompletion: 0,
+      castCompletion: 50,
       amountOfRaidersAlive: 10,
-      raiders: raiders,
     };
 
     //get navigation props
@@ -32,16 +32,15 @@ export default class EncounterScreen extends React.Component {
 
   componentDidMount(){
     //select spell number one as starting spell
-    this.selectSpellOne();
+    this.selectSpell(this.spellOne);
 
     //interval that runs the game
     this._maininterval = setInterval(() => {
       if(this.state.bossHp <= 0 || this.state.amountOfRaidersAlive === 0){
-        /*TODO: trigger fight over screen,
-        for now go back to fight select screen*/
-        this.props.navigation.navigate('FightSelect');
+        //TODO: fix https://reactnavigation.org/docs/en/stack-actions.html#reset
+        this.props.navigation.reset();
 
-        //clear interval, stopping interval from running
+        //clear interval
         //this line might be unneccessary because of doing the same in componentWillUnmount()
         clearInterval(this._maininterval);
       }
@@ -60,7 +59,7 @@ export default class EncounterScreen extends React.Component {
 
 
   componentWillUnmount() {
-    //clear interval, stopping interval from running
+    //clear interval
     clearInterval(this._maininterval);
   }
 
@@ -107,14 +106,9 @@ export default class EncounterScreen extends React.Component {
     });
   }
 
-  //select first spell
-  selectSpellOne(){
-    this.selectedSpell = this.spellOne;
-  }
-
-  //select second spell
-  selectSpellTwo(){
-    this.selectedSpell = this.spellTwo;
+  //select spell
+  selectSpell(spell){
+    this.selectedSpell = spell;
   }
 
   //castbar animation
@@ -148,7 +142,6 @@ export default class EncounterScreen extends React.Component {
         </View>
 
         <View style={style.raidContainer}>
-
           <BossHealthbar
             fillPercent={(this.state.bossHp / bossMaxHealth) * 100}
             text="'Bossname here'"
@@ -158,32 +151,26 @@ export default class EncounterScreen extends React.Component {
             {
               this.state.raiders.map((raider, i) => {
                 return(
-                  <View key={i}>
-                    <RaiderHealthbar
-                      onpress={() => this.castSelectedSpell(i)}
-                      fillPercent={(raider.hp / raiderMaxHealth) * 100}
-                      effects={raider.effects}
-                    />
-                  </View>
+                  <Raider key={i}
+                    onpress={() => this.castSelectedSpell(i)}
+                    hp={raider.hp}
+                    effects={raider.effects}
+                  />
                 );
               })
             }
           </View>
         </View>
 
-        <View>
-          <Manabar
-            fillPercent={(this.state.mana / maxMana) * 100}
-          />
-        </View>
+        <Manabar
+          fillPercent={(this.state.mana / maxMana) * 100}
+        />
 
-        <View>
-          <Castbar castCompletion={this.state.castCompletion} />
-        </View>
+        <Castbar castCompletion={this.state.castCompletion} />
 
         <View style={style.spellBtnsContainer}>
-          <SpellBtn onpress={() => this.selectSpellOne()} text={this.spellOne.name}/>
-          <SpellBtn onpress={() => this.selectSpellTwo()} text={this.spellTwo.name}/>
+          <SpellBtn onpress={() => this.selectSpell(this.spellOne)} text={this.spellOne.name}/>
+          <SpellBtn onpress={() => this.selectSpell(this.spellTwo)} text={this.spellTwo.name}/>
         </View>
       </View>
     );

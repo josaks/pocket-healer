@@ -8,7 +8,7 @@ export default class Castbar extends React.Component {
     return(
       <ResourceBar
         fillPercent={this.props.castCompletion}
-        fillColor={style.castbarColor}
+        fillColor={style.castBarColor}
         frameStyle={style.castBar}
       />
     );
