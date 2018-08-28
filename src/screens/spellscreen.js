@@ -4,7 +4,6 @@ import style from '../config/style';
 import RejectBtn from '../components/rejectbtn';
 import AcceptBtn from '../components/acceptbtn';
 import SpellListEntry from '../components/spellListEntry';
-import SpellSelectModal from '../components/spellselectmodal';
 import SpellInfoModal from '../components/spellinfomodal';
 import SpellFactory from '../lib/spells/spellfactory';
 import { deepClone } from '../lib/helpermethods';
@@ -93,7 +92,7 @@ export default class SpellScreen extends React.Component {
                   return (
                     <SpellListEntry
                       name={item.name}
-                      spellToModal={() => this.selectSpell(item)}
+                      selectSpell={() => this.selectSpell(item)}
                       openInfo={() => this.openInfo(item)}
                       selected={item.selected}
                     />

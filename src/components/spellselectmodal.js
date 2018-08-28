@@ -1,3 +1,7 @@
+/*
+@deprecated
+*/
+
 import React from 'react';
 import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import ClickOutsideToCloseModal from './clickoutsidetoclosemodal';

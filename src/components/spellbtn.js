@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
 import style from '../config/style';
 
-
-export default class SpellBtn extends React.Component{
-  render(){
-    return(
-      <TouchableOpacity onPress={this.props.onpress} style={style.spellBtn}>
-        <Text>{this.props.text}</Text>
-      </TouchableOpacity>
-    );
-  }
+const SpellBtn = ({ onpress, text }) => (
+  <TouchableOpacity onPress={onpress} style={style.spellBtn}>
+    <Text>{text}</Text>
+  </TouchableOpacity>
+);
+SpellBtn.propTypes = {
+  onpress: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
+
+export default SpellBtn;

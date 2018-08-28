@@ -1,14 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import style from '../config/style';
 import DefaultText from './defaulttext';
 
-export default class FightInfo extends React.Component{
-  render(){
-    return(
-      <View style={style.fightInfo}>
-        <DefaultText>Some information about the bossfight</DefaultText>
-      </View>
-    );
-  }
-};
+const FightInfo = () => (
+  <View style={style.fightInfo}>
+    <DefaultText>Some information about the bossfight</DefaultText>
+  </View>
+);
+export default FightInfo;

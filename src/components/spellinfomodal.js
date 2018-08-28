@@ -1,27 +1,31 @@
 import React from 'react';
-import {Modal, Text, TouchableOpacity, View, Button} from 'react-native';
+import PropTypes from 'prop-types';
+import { Text, View } from 'react-native';
 import style from '../config/style';
 import ClickOutsideToCloseModal from './clickoutsidetoclosemodal';
 
-export default class SpellInfoModal extends React.Component {
-  render() {
-    const {manaCost, name, casttime, healAmount} = this.props.spell;
+const SpellInfoModal = ({ spell, visible, hide }) => {
+  const { manaCost, name, casttime, healAmount } = spell;
 
-    return (
-      <View>
-        <ClickOutsideToCloseModal
-          visible={this.props.visible}
-          hide={this.props.hide}
-          render={() => (
-            <View style={style.spellInfoModal}>
-              <Text>Name: {name}</Text>
-              <Text>Heal Amount: {healAmount}</Text>
-              <Text>Manacost: {manaCost}</Text>
-              <Text>Casttime: {casttime}</Text>
-            </View>
-          )}
-        />
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <ClickOutsideToCloseModal
+        visible={visible}
+        hide={hide}
+        render={() => (
+          <View style={style.spellInfoModal}>
+            <Text>Name: {name}</Text>
+            <Text>Heal Amount: {healAmount}</Text>
+            <Text>Manacost: {manaCost}</Text>
+            <Text>Casttime: {casttime}</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+SpellInfoModal.propTypes = {
+  spell: PropTypes.isRequired,
+  visible: PropTypes.bool.isRequired,
+  hide: PropTypes.func.isRequired,
+};

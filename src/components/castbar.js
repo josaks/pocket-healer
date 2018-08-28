@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
 import style from '../config/style';
 import ResourceBar from './resourcebar';
 
-export default class Castbar extends React.Component {
-  render(){
-    return(
-      <ResourceBar
-        fillPercent={this.props.castCompletion}
-        fillColor={style.castBarColor}
-        frameStyle={style.castBar}
-      />
-    );
-  }
+const Castbar = ({ castCompletion }) => (
+  <ResourceBar
+    fillPercent={castCompletion}
+    fillColor={style.castarColor}
+    frameStyle={style.castBar}
+  />
+);
+Castbar.propTypes = {
+  castCompletion: PropTypes.number.isRequired,
 };
+
+export default Castbar;

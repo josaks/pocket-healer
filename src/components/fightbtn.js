@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { Text, TouchableOpacity } from 'react-native';
 import style from '../config/style';
 
-
-export default class FightBtn extends React.Component{
-  render(){
-    return(
-      <TouchableOpacity style={style.fight} onPress={this.props.onpress}>
-        <Text style={style.fightText}>{this.props.name}</Text>
-      </TouchableOpacity>
-    );
-  }
+const FightBtn = ({ onpress, name }) => (
+  <TouchableOpacity style={style.fight} onPress={onpress}>
+    <Text style={style.fightText}>{name}</Text>
+  </TouchableOpacity>
+);
+FightBtn.propTypes = {
+  onpress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };
+
+export default FightBtn;

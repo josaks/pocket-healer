@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
-import style from '../config/style';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import style from '../config/style';
 
-
-export default class RejectBtn extends React.Component{
-  render(){
-    return(
-      <TouchableOpacity onPress={this.props.onpress} style={[style.fightInfoBtn, style.rejectBtn]}>
-        <FontAwesome name={'times'} size={35} />
-      </TouchableOpacity>
-    );
-  }
+const RejectBtn = ({ onpress }) => (
+  <TouchableOpacity onPress={onpress} style={[style.fightInfoBtn, style.rejectBtn]}>
+    <FontAwesome name="times" size={35} />
+  </TouchableOpacity>
+);
+RejectBtn.propTypes = {
+  onpress: PropTypes.func.isRequired,
 };
+
+export default RejectBtn;

@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import style from '../config/style';
 import ResourceBar from './resourcebar';
 
-export default class Manabar extends React.Component {
-  render(){
-    return(
-      <ResourceBar
-        fillPercent={this.props.fillPercent}
-        fillColor={style.manabarColor}
-        frameStyle={style.manabar}
-      />
-    );
-  }
+const Manabar = ({ fillPercent }) => (
+  <ResourceBar
+    fillPercent={fillPercent}
+    fillColor={style.manabarColor}
+    frameStyle={style.manabar}
+  />
+);
+Manabar.propTypes = {
+  fillPercent: PropTypes.number.isRequired,
 };
+
+export default Manabar;

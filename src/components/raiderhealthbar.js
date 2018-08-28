@@ -1,16 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
+import PropTypes from 'prop-types';
 import style from '../config/style';
 import ResourceBar from './resourcebar';
 
-export default class RaiderHealthbar extends React.Component{
-  render(){
-    return(
-      <ResourceBar
-        fillPercent={this.props.fillPercent}
-        fillColor={style.raiderHealthbarColor}
-        frameStyle={style.raiderHealthbar}
-      />
-    );
-  }
+const RaiderHealthbar = ({ fillPercent }) => (
+  <ResourceBar
+    fillPercent={fillPercent}
+    fillColor={style.raiderHealthbarColor}
+    frameStyle={style.raiderHealthbar}
+  />
+);
+RaiderHealthbar.propTypes = {
+  fillPercent: PropTypes.number.isRequired,
 };
+
+export default RaiderHealthbar;

@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import style from '../config/style';
 import ResourceBar from './resourcebar';
 
-export default class BossHealthbar extends React.Component{
-  render(){
-    return(
-      <ResourceBar
-        fillPercent={this.props.fillPercent}
-        fillColor={style.bossHealthbarColor}
-        frameStyle={style.bossHealthbar}
-      />
-    );
-  }
+const BossHealthbar = ({ fillPercent }) => (
+  <ResourceBar
+    fillPercent={fillPercent}
+    fillColor={style.bossHealthbarColor}
+    frameStyle={style.bossHealthbar}
+  />
+);
+BossHealthbar.propTypes = {
+  fillPercent: PropTypes.number.isRequired,
 };
+
+export default BossHealthbar;
