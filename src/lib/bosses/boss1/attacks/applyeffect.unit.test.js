@@ -15,7 +15,6 @@ describe('the applied effects', () => {
   let raidersWithEffectApplied = ApplyEffect(raiders, index, effectOne);
   raidersWithEffectApplied = ApplyEffect(raiders, index, effectTwo);
 
-  console.log(JSON.stringify(raidersWithEffectApplied[index].effects[0]));
   test('have the expected properties', () => {
     expect(JSON.stringify(raidersWithEffectApplied[index].effects[0]))
       .toEqual(JSON.stringify(expected[index].effects[0]));
