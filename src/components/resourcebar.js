@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import style from '../config/style';
 
 const ResourceBar = ({ fillPercent, frameStyle, fillColor }) => {
-  const widthString = fillPercent.toString() + '%';
+  const widthString = `${fillPercent.toString()} %`;
 
   return (
     <View style={[style.barFrame, frameStyle]}>
