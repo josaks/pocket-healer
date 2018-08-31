@@ -6,7 +6,7 @@ import ResourceBar from './resourcebar';
 const Castbar = ({ castCompletion }) => (
   <ResourceBar
     fillPercent={castCompletion}
-    fillColor={style.castarColor}
+    fillColor={style.castBarColor}
     frameStyle={style.castBar}
   />
 );

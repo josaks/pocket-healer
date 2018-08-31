@@ -1,21 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import style from '../config/style';
+import FillView from './fillview';
 
-const ResourceBar = ({ fillPercent, frameStyle, fillColor }) => {
-  const widthString = `${fillPercent.toString()} %`;
-
-  return (
-    <View style={[style.barFrame, frameStyle]}>
-      <View style={[style.barFill, fillColor, { width: widthString }]} />
-    </View>
-  );
-};
-ResourceBar.propTypes = {
-  fillPercent: PropTypes.number.isRequired,
-  frameStyle: PropTypes.isRequired,
-  fillColor: PropTypes.isRequired,
-};
+const ResourceBar = ({ fillPercent, frameStyle, fillColor }) => (
+  <View style={[style.barFrame, frameStyle]}>
+    <FillView fillColor={fillColor} fillPercent={fillPercent} />
+  </View>
+);
 
 export default ResourceBar;
