@@ -16,10 +16,5 @@ const Raider = ({ onpress, hp, effects }) => (
     />
   </TouchableOpacity>
 );
-Raider.propTypes = {
-  onpress: PropTypes.func.isRequired,
-  hp: PropTypes.number.isRequired,
-  effects: PropTypes.number.isRequired,
-};
 
 export default Raider;

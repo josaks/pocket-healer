@@ -2,7 +2,6 @@
 /* eslint react/no-array-index-key: 0 */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Image } from 'react-native';
 import style from '../config/style';
 
@@ -20,8 +19,5 @@ const RaiderStatusbar = ({ effects }) => (
     }
   </View>
 );
-RaiderStatusbar.propTypes = {
-  effects: PropTypes.isRequired,
-};
 
 export default RaiderStatusbar;

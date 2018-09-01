@@ -29,3 +29,5 @@ SpellInfoModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   hide: PropTypes.func.isRequired,
 };
+
+export default SpellInfoModal;

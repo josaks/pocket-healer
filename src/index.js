@@ -8,6 +8,7 @@ import EncounterScreen from './screens/encounterscreen';
 
 const RootStack = createStackNavigator(
   {
+    // Decide which screens our routes use
     FightSelect: FightSelectScreen,
     Spells: SpellScreen,
     FightInfo: FightInfoScreen,
@@ -15,27 +16,14 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'FightSelect',
-    headerMode: 'none',
+    // Header styles for all routes
     navigationOptions: {
-        headerVisible: false,
+      headerTintColor: 'black',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
     },
-    //header customization
-    // navigationOptions:{
-    //   headerStyle: {
-    //     backgroundColor: 'gray',
-    //   },
-    //   headerTintColor: 'blue',
-    //   headerTitleStyle: {
-    //     fontWeight: 'bold',
-    //   },
-    // },
   }
 );
 
-export default class Index extends React.Component{
-  render() {
-    return (
-      <RootStack />
-    );
-  }
-};
+export default RootStack;

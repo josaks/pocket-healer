@@ -1,15 +1,18 @@
-/* eslint react/prop-types: 0 */
 
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import style from '../config/style';
-import RejectBtn from '../components/rejectbtn';
-import AcceptBtn from '../components/acceptbtn';
 import SpellListEntry from '../components/spellListEntry';
 import SpellInfoModal from '../components/spellinfomodal';
 import SpellFactory from '../lib/spells/spellfactory';
+import BackBtn from '../components/backbtn';
+import NextBtn from '../components/nextbtn';
 
 export default class SpellScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Select two spells to use',
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -70,19 +73,19 @@ export default class SpellScreen extends React.Component {
     // }
   }
 
-  showEncounter() {
+  showEncounter = () => {
     const { selectedSpells } = this.state;
     const { navigation } = this.props;
 
     if (selectedSpells[0] !== null && selectedSpells[1] !== null) {
       navigation.navigate('Encounter', {
         boss: navigation.getParam('boss'),
-        spells: { spellOne: this.state.selectedSpells[0], spellTwo: this.state.selectedSpells[1] },
+        spells: { spellOne: selectedSpells[0], spellTwo: selectedSpells[1] },
       });
     }
   }
 
-  goBack() {
+  goBack = () => {
     this.props.navigation.goBack();
   }
 
@@ -120,9 +123,9 @@ export default class SpellScreen extends React.Component {
           </View>
         </View>
 
-        <View style={style.spellSelectButtonsContainer}>
-          <RejectBtn onpress={() => this.goBack()} />
-          <AcceptBtn onpress={() => this.showEncounter()} />
+        <View style={style.navButtonsContainer}>
+          <BackBtn onPress={this.goBack} />
+          <NextBtn onPress={this.showEncounter} />
         </View>
       </View>
     );

@@ -5,7 +5,7 @@ import Dot from '../../effects/dot';
 
 // logic for boss 1
 // roll is expected to be a random int in the interval [0, 99]
-export default (raiders, roll) => {
+const logic = (raiders, roll) => {
   // index in raider array that will be target of boss ability
   // randomly chosen
   const i = Math.floor(Math.random() * raiders.length);
@@ -29,4 +29,10 @@ export default (raiders, roll) => {
     default:
       return raiders;
   }
+};
+
+export default {
+  logic,
+  name: 'Boss 1',
+  info: 'Boss 1 does:\n this\n and that',
 };

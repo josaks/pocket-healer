@@ -1,22 +1,18 @@
-/* eslint react/prop-types: 0 */
-
 import React from 'react';
 import { View } from 'react-native';
 import style from '../config/style';
 import FightBtn from '../components/fightbtn';
 
 // bosses
-import Boss1Logic from '../lib/bosses/boss1';
+import Boss1 from '../lib/bosses/boss1';
 
 export default class FightBtnSelectScreen extends React.Component {
   static navigationOptions = {
-    title: 'Map',
+    title: 'Choose a boss to fight',
   };
 
-  openFightInfo = () => {
-    this.props.navigation.navigate('FightInfo', {
-      boss: Boss1Logic,
-    });
+  openFightInfo = (boss) => {
+    this.props.navigation.navigate('FightInfo', { boss });
   }
 
   render() {
@@ -26,8 +22,8 @@ export default class FightBtnSelectScreen extends React.Component {
       <View style={style.mapScreen}>
         <View style={style.mapRow}>
           <FightBtn
-            name="Fight 1"
-            onpress={openFightInfo}
+            name={Boss1.name}
+            onpress={() => openFightInfo(Boss1)}
           />
           <FightBtn name="Fight 2" />
           <FightBtn name="Fight 3" />

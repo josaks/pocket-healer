@@ -1,8 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
-//height and width of screen
+// height and width of screen
+// TODO: use % instead
 const { height, width } = Dimensions.get('window');
 
-//TODO: categoryize styles by screens
+// TODO: categoryize styles by screens
 
 export default StyleSheet.create({
   defaultText: {
@@ -11,24 +12,19 @@ export default StyleSheet.create({
   },
   mapScreen: {
     flex: 1,
-    backgroundColor: 'orange',
-    paddingTop: 0.10*height,
+    paddingTop: '10%',
   },
   fightInfoScreen: {
     flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 0.10*height,
   },
   spellScreen: {
     flex: 1,
-    backgroundColor: 'white',
   },
   spellContentContainer: {
-    flex: 1,
+    flex: 4,
   },
   encounterScreen: {
     flex: 1,
-    backgroundColor: 'white',
     paddingTop: '5%',
   },
   mapRow: {
@@ -38,24 +34,22 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   fight: {
-    backgroundColor: 'black',
-    height: 0.05*height,
-    width: 0.20*width,
     justifyContent: 'center',
     alignItems: 'center',
   },
   fightText: {
-    color: 'white',
   },
   fightInfo: {
-    height: 0.75*height,
-    backgroundColor: 'white',
+    flex: 4,
   },
-  fightInfoButtonsContainer: {
+  navButton: {
+    height: '100%',
+    width: '50%',
+  },
+  navButtonsContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   spellSelectButtonsContainer: {
     height: '15%',

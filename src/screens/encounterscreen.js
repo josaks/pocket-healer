@@ -1,4 +1,3 @@
-/* eslint react/prop-types: 0 */
 
 import React from 'react';
 import { View, Text } from 'react-native';
@@ -12,6 +11,20 @@ import { deepClone } from '../lib/helpermethods';
 import { raiderMaxHealth, bossMaxHealth, maxMana } from '../config/settings';
 
 export default class EncounterScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    const { name } = navigation.getParam('boss');
+
+    return ({
+      headerTitle: name,
+      headerLeft: null,
+      headerTitleStyle: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        width: '90%',
+      },
+    });
+  };
+
   constructor(props) {
     super(props);
     const raiders = [];
@@ -30,7 +43,7 @@ export default class EncounterScreen extends React.Component {
     const { navigation } = props;
     this.spellOne = navigation.getParam('spells').spellOne;
     this.spellTwo = navigation.getParam('spells').spellTwo;
-    this.bossLogic = navigation.getParam('boss');
+    this.bossLogic = navigation.getParam('boss').logic;
   }
 
   componentDidMount() {
@@ -138,9 +151,6 @@ export default class EncounterScreen extends React.Component {
   render() {
     return (
       <View style={style.encounterScreen}>
-        <View style={style.bossNameContainer}>
-          <Text style={style.bossName}>Example bossname</Text>
-        </View>
 
         <View style={style.raidContainer}>
           <BossHealthbar
